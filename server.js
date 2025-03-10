@@ -24,7 +24,7 @@ const pool = new Pool({
 const generateRandomStatistics = () => {
   return {
     students_enrolled: Math.floor(Math.random() * 1000), // Случайное число от 0 до 1000
-    average_rating: (Math.random() * 3).toFixed(1) + 2.0,     // Случайное число от 0.0 до 5.0
+    average_rating: (Math.random() * 3 + 2.0).toFixed(1),     // Случайное число от 0.0 до 5.0
     completion_rate: (Math.random() * 100).toFixed(1),  // Случайное число от 0.0 до 100.0
   };
 };
@@ -62,6 +62,23 @@ pool.query(`
 app.get('/api/categories', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM categories');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Ошибка при загрузке категорий:', error);
+    res.status(500).json({ error: 'Ошибка при загрузке категорий' });
+  }
+});
+
+// API для получения списка статистики
+app.get('/api/statistics', async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT courses.id, courses.name, courses.description, categories.name AS category_name,
+             course_statistics.students_enrolled, course_statistics.average_rating, course_statistics.completion_rate
+      FROM courses
+      LEFT JOIN categories ON courses.category_id = categories.id
+      LEFT JOIN course_statistics ON courses.id = course_statistics.course_id
+    `);
     res.json(result.rows);
   } catch (error) {
     console.error('Ошибка при загрузке категорий:', error);

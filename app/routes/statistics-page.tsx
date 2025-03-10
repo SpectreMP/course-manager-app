@@ -1,5 +1,5 @@
-import type { Route } from "./+types/course-creation-form";
-import CourseCreationForm from "../CourseCreationForm/CourseCreationForm";
+import type { Route } from "./+types/statistics-page";
+import StatisticsPage from "../StatisticsPage/StatisticsPage";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +9,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function form() {
-  return <CourseCreationForm />;
+  return <StatisticsPage />;
 } 

@@ -5,12 +5,13 @@ const CourseCreationForm = ({ onCourseCreated }) => {
   const [courseDescription, setCourseDescription] = useState('');
   const [courseCategoryId, setCourseCategoryId] = useState('');
   const [categories, setCategories] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Загружаем категории при монтировании компонента
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/categories');
+        const response = await fetch(`http://${API_URL}/categories`);
         const data = await response.json();
         setCategories(data);
       } catch (error) {
@@ -31,7 +32,7 @@ const CourseCreationForm = ({ onCourseCreated }) => {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/courses', {
+      const response = await fetch(`http://${API_URL}/courses`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

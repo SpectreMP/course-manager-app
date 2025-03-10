@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react'
 import CourseCreationForm from "~/CourseCreationForm/CourseCreationForm";
 import CourseList from "~/CourseList/CourseList";
+import dotenv from 'dotenv';
 
-export function Welcome() {
+const API_URL = import.meta.env.VITE_API_URL;
+console.log(API_URL);
+
+export function CourseManagement() {
   const [courses, setCourses] = useState([]);
 
   const fetchCourses = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/courses');
+      const response = await fetch(`http://${API_URL}/courses`);
       const data = await response.json();
       setCourses(data);
     } catch (error) {
@@ -32,7 +36,7 @@ export function Welcome() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Левая колонка: Форма создания курса */}
-          <div className="sticky top-8 h-fit bg-white p-6 rounded-lg shadow-md">
+          <div className="lg:sticky lg:top-8 h-fit bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Создать новый курс</h2>
             <CourseCreationForm onCourseCreated={handleCourseCreated} />
           </div>

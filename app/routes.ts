@@ -7,7 +7,8 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
-    index("routes/home.tsx"),
-    route("form", "./routes/course-creation-form.tsx"),
-    route("list", "./routes/course-list.tsx"),
+    layout("./routes/layout.tsx", [
+      index("routes/course-management.tsx"),
+      route("statistics", "./routes/statistics-page.tsx"),
+    ]),
 ] satisfies RouteConfig;
