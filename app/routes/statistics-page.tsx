@@ -3,8 +3,8 @@ import StatisticsPage from "../StatisticsPage/StatisticsPage";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Статистика курсов" },
+    { name: "description", content: "Просматривай статистику курсов" },
   ];
 }
 

@@ -3,8 +3,8 @@ import { CourseManagement } from "../CourseManagement/CourseManagement";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Страница Менеджмента Курсов" },
+    { name: "description", content: "Создавай и управляй образовательными курсами" },
   ];
 }
 
