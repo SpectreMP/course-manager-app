@@ -35,7 +35,7 @@ pool.query(`
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    category VARCHAR(100) NOT NULL
+    category_id INT REFERENCES categories(id)
   );
 `);
 
